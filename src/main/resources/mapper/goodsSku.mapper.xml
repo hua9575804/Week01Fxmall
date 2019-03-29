@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.fxmall.goods.mapper.IGoodsSkuMapper">
+    <sql id="params">
+        sku_id, sku_name, sku_cost, sku_price, sku_pmoney, good_id, order_no, service_money
+    </sql>
+    <sql id="properties">
+        #{skuId},#{skuName},#{skuCost},#{skuPrice},#{skuPmoney},#{goodId},#{orderNo},#{serviceMoney}
+    </sql>
+    <insert id="insertGoodsSku">
+        insert into wxb_good_sku (<include refid="params"></include> ) values (<include refid="properties"></include>);
+    </insert>
+</mapper>
