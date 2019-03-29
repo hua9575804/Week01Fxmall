@@ -21,6 +21,7 @@ import java.util.UUID;
 public class TestAn {
     /**
      * 中国master2.0
+     * update2.0
      * @param args
      */
 //    public static void main(String[] args) {
