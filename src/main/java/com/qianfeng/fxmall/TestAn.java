@@ -15,15 +15,11 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * 中国提交
- * 2
+ * 印度1.0
  */
 public class TestAn {
-/**
-     * 2
-     * 3
-     */
     /**
+     * 中国
      * @param args
      */
 //    public static void main(String[] args) {
