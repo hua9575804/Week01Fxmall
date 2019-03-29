@@ -179,7 +179,7 @@
                     <ul class="submenu">
                         <li class="active">
                             <%--<a href="http://localhost:8080/cust/goods/list">--%>
-                                <a href="goods.do">
+                                <a href="goods.do?m=queryGoodsByPage">
                                 <i class="icon-double-angle-right"></i>
                                 商品信息
                             </a>
@@ -187,13 +187,13 @@
 
                         <li>
                             <a href="http://localhost:8080/cust/goods/add">
-                                <i class="icon-pencil"></i>
+                                <i class="goods_add.jsp"></i>
                                 增加商品
                             </a>
                         </li>
                         <li>
                             <%--<a href="http://localhost:8080/cust/goods/copy/list">--%>
-                                <a href="goodsCopy.do">
+                                <a href="goodsCopy.do?m=queryWxbGoodsCopyByPage">
                                 <i class="icon-double-angle-right"></i>
                                 商品文案
                             </a>

@@ -177,20 +177,20 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="http://localhost:8081/cust/goods/list">
+                            <a href="goods.do?m=queryGoodsByPage">
                                 <i class="icon-double-angle-right"></i>
                                 商品信息
                             </a>
                         </li>
 
                         <li class="active">
-                            <a href="http://localhost:8081/cust/goods/add">
+                            <a href="goods_add.jsp">
                                 <i class="icon-pencil"></i>
                                 增加商品
                             </a>
                         </li>
                         <li>
-                            <a href="http://localhost:8081/cust/goods/copy/list">
+                            <a href="goodsCopy.do?m=queryWxbGoodsCopyByPage">
                                 <i class="icon-double-angle-right"></i>
                                 商品文案
                             </a>
@@ -456,19 +456,19 @@
                     </h1>
                 </div>
 
-                <form method="post" name="copy_form" id="copy_form" action="http://localhost:8081/cust/goods/add" enctype="multipart/form-data">
+                <form method="post" name="copy_form" id="copy_form" action="goods.do?m=insertGoodsAndGoodSku" ><%--enctype="multipart/form-data"--%>
                     <div class="widget-main">
-                        <input type="hidden" id="sku_str" name="sku_str" value="">
+                        <input type="hidden" id="sku_str" name="sku_str" value="66">
                         <input type="hidden" id="ctype" name="ctype" value="custGood">
-                        <input type="hidden" id="sku_title" name="sku_title" value="">
-                        <input type="hidden" id="sku_cost" name="sku_cost" value="">
-                        <input type="hidden" id="sku_pmoney" name="sku_pmoney" value="">
-                        <input type="hidden" id="service_money" name="service_money" value="">
-                        <input type="hidden" id="sku_price" name="sku_price" value="">
-                        <input type="hidden" id="good_id" name="good_id" value="">
-                        <input type="hidden" id="copy_id" name="copy_id" value="">
-                        <input type="hidden" id="spc_id" name="spc_id" value="">
-                        <input type="hidden" id="zon_id" name="zon_id" value="">
+                        <input type="hidden" id="sku_title" name="sku_title" value="66">
+                        <input type="hidden" id="sku_cost" name="sku_cost" value="66">
+                        <input type="hidden" id="sku_pmoney" name="sku_pmoney" value="66">
+                        <input type="hidden" id="service_money" name="service_money" value="66">
+                        <input type="hidden" id="sku_price" name="sku_price" value="66">
+                        <input type="hidden" id="good_id" name="good_id" value="6">
+                        <input type="hidden" id="copy_id" name="copy_id" value="6">
+                        <input type="hidden" id="spc_id" name="spc_id" value="6">
+                        <input type="hidden" id="zon_id" name="zon_id" value="6">
                         <input type="hidden" id="optype" name="optype" value="add_good">
                         <input type="hidden" id="iswxpay" name="iswxpay" value="0">
                         <input type="hidden" id="customer_id" name="customer_id" value="69609206">
@@ -809,7 +809,7 @@
     var baseUrl = '';
     function submitData(){
         var gid = "";
-        var url = "cgood!saveGood.ct";
+        var url = "goods.do?m=insertGoodsAndGoodSku";
         //var spc_id = getRadioValue('scopy_id');
         var spc_ids = getCheckBoxValue('scopy_id');
         var zon_ids = getCheckBoxValue('zcopy_id');

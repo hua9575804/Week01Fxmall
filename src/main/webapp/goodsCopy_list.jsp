@@ -180,20 +180,20 @@
                         <li>
                             <%--<a href="http://localhost:8080/cust/goods/list">--%>
                                 <i class="icon-double-angle-right"></i>
-                                <a href="goods.do">
+                                <a href="goods.do?m=queryGoodsByPage">
                                 商品信息
                             </a>
                         </li>
 
                         <li>
-                            <a href="http://localhost:8080/cust/goods/add">
+                            <a href="goods_add.jsp">
                                 <i class="icon-pencil"></i>
                                 增加商品
                             </a>
                         </li>
                         <li class="active">
                             <%--<a href="http://localhost:8080/cust/goods/copy/list">--%>
-                            <a href="goodsCopy.do">
+                            <a href="goodsCopy.do?m=queryWxbGoodsCopyByPage">
                                 <i class="icon-double-angle-right"></i>
                                 商品文案
                             </a>

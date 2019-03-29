@@ -11,13 +11,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class GoodsCopyServlet extends HttpServlet {
+public class GoodsCopyServlet extends BaseServlet {
 
     private IGoodsCopyService goodsCopyService = new GoodsCopyServiceImpl();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String pageStr = req.getParameter("page");
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        String pageStr = req.getParameter("page");
+//        try {
+//            pageStr = pageStr == null ? "1" : pageStr;
+//            List<WxbGoodCopy> wxbGoodCopies  = goodsCopyService.queryWxbGoodsCopyByPage(Integer.parseInt(pageStr));
+//            req.setAttribute("goodsCopyList",wxbGoodCopies);
+//            req.getRequestDispatcher("goodsCopy_list.jsp").forward(req,resp);
+//        } catch (NumberFormatException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//    }
+
+    public void queryWxbGoodsCopyByPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                String pageStr = req.getParameter("page");
         try {
             pageStr = pageStr == null ? "1" : pageStr;
             List<WxbGoodCopy> wxbGoodCopies  = goodsCopyService.queryWxbGoodsCopyByPage(Integer.parseInt(pageStr));
@@ -26,11 +44,5 @@ public class GoodsCopyServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-    }
-
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 }
