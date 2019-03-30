@@ -98,7 +98,7 @@ public class TestAn {
         wxbGood.setLeixingId(0);
         wxbGood.setKfqq("0");
         IGoodsService goodsService = new GoodsServiceImpl();
-        goodsService.insertGoodsAndGoodsSku(wxbGood);
+//        goodsService.insertGoodsAndGoodsSku(wxbGood);
         //-----------------------------------------------------------
         IGoodsSkuService goodsSkuService = new GoodsSkuServiceImpl();
         Random random = new Random();
@@ -145,7 +145,7 @@ public class TestAn {
         wxbGoodSku3.setGoodId(wxbGood.getGoodId());
         wxbGoodSku3.setOrderNo(000);
         wxbGoodSku3.setServiceMoney("客服提成");
-        goodsSkuService.insertGoodsSku(wxbGoodSku3);
+//        goodsSkuService.insertGoodsSku(wxbGoodSku3);
 //        sqlSession.commit();
 //        sqlSession.close();
     }

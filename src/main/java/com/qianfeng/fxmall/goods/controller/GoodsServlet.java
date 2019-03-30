@@ -115,11 +115,6 @@ public class GoodsServlet extends BaseServlet {
         String jg4 = req.getParameter("jg4");
         String fc4 = req.getParameter("fc4");
         String kffc1 = req.getParameter("kffc1");
-        System.out.println("------------------"+sku1);
-        System.out.println("------------------"+kffc1);
-        //hidden影藏值
-        String sku_str = req.getParameter("sku_str");
-        String ctype = req.getParameter("ctype");
         String sku_title = req.getParameter("sku_title");
         String sku_cost = req.getParameter("sku_cost");
         String sku_pmoney = req.getParameter("sku_pmoney");
