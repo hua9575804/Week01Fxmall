@@ -14,4 +14,6 @@ public class SystemConstatsUtils {
          */
         public static final Integer PAGE_SIZE = 3;
     }
+
+    public static final String UPLOAD_PATH = "E:/java_advanced/workspace/demo_mybatis_threadlocal/src/main/images/";
 }

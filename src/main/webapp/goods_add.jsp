@@ -5,7 +5,8 @@
   Time: 20:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- saved from url=(0036)http://localhost:8081/cust/goods/add -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./static/default.css" rel="stylesheet" id="lhgdialoglink">
@@ -456,7 +457,7 @@
                     </h1>
                 </div>
 
-                <form method="post" name="copy_form" id="copy_form" action="goods.do?m=insertGoodsAndGoodSku" ><%--enctype="multipart/form-data"--%>
+                <form method="post" name="copy_form" id="copy_form" action="goods.do?m=insertGoodsAndGoodSku" enctype="multipart/form-data"><%--enctype="multipart/form-data"--%>
                     <div class="widget-main">
                         <input type="hidden" id="sku_str" name="sku_str" value="66">
                         <input type="hidden" id="ctype" name="ctype" value="custGood">
@@ -809,7 +810,7 @@
     var baseUrl = '';
     function submitData(){
         var gid = "";
-        var url = "goods.do?m=insertGoodsAndGoodSku";
+        var url = "goods.do?m=insertGoodsAndGoodSku2";
         //var spc_id = getRadioValue('scopy_id');
         var spc_ids = getCheckBoxValue('scopy_id');
         var zon_ids = getCheckBoxValue('zcopy_id');

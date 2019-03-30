@@ -1,16 +1,23 @@
 package com.qianfeng.fxmall.goods.controller;
 
+import com.qianfeng.fxmall.commons.info.SystemConstatsUtils;
 import com.qianfeng.fxmall.goods.bean.WxbGood;
 import com.qianfeng.fxmall.goods.bean.WxbGoodSku;
 import com.qianfeng.fxmall.service.IGoodsService;
 import com.qianfeng.fxmall.service.IGoodsSkuService;
 import com.qianfeng.fxmall.service.impl.GoodsServiceImpl;
 import com.qianfeng.fxmall.service.impl.GoodsSkuServiceImpl;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -114,6 +121,7 @@ public class GoodsServlet extends BaseServlet {
         String cb4 = req.getParameter("cb4");
         String jg4 = req.getParameter("jg4");
         String fc4 = req.getParameter("fc4");
+
         String kffc1 = req.getParameter("kffc1");
         String sku_title = req.getParameter("sku_title");
         String sku_cost = req.getParameter("sku_cost");
@@ -137,7 +145,7 @@ public class GoodsServlet extends BaseServlet {
         Timestamp timestamp = new Timestamp(date.getTime());//create_time+toped_time+recomed_time
         WxbGood wxbGood = new WxbGood(goodId,good_name,customer_id,pic,pic,pic,promote_desc,sku_title,
                 sku_cost,sku_price,sku_pmoney,defaultStr,copy_desc,forward_link,order_no,type_id,tags,defaultNum,timestamp,
-                defaultNum,defaultNum,timestamp,timestamp,spc_id,zon_id,sell_num,defuultUrl,iswxpay,defaultNum,defaultNum,defaultStr);
+                defaultNum,defaultNum,timestamp,timestamp,spc_id,zcopy_id,sell_num,defuultUrl,iswxpay,defaultNum,defaultNum,defaultStr);
         System.out.println("--------------新增商品----------------------");
 //        goodsService.insertGoodsAndGoodsSku(wxbGood);
         //新增套餐
@@ -158,12 +166,113 @@ public class GoodsServlet extends BaseServlet {
 //        System.out.println("----------行----------"+ row);
         WxbGoodSku wxbGoodSku1 = new WxbGoodSku(s1,sku1,cb1,jg1,fc1,wxbGood.getGoodId(),order_no,service_money);
 //        goodsSkuService.insertGoodsSku(wxbGoodSku1);
+        WxbGoodSku wxbGoodSku2 = new WxbGoodSku(s2,sku2,cb2,jg2,fc2,wxbGood.getGoodId(),order_no,service_money);
+//        goodsSkuService.insertGoodsSku(wxbGoodSku2);
+        WxbGoodSku wxbGoodSku3 = new WxbGoodSku(s3,sku3,cb3,jg3,fc3,wxbGood.getGoodId(),order_no,service_money);
+//        goodsSkuService.insertGoodsSku(wxbGoodSku3);
         req.getRequestDispatcher("goods.do?m=queryGoodsByPage").forward(req,resp);
     }
     /**
-     *特殊表单添加
+     *特殊表单
      */
     public void insertGoodsAndGoodSku2(HttpServletRequest req,HttpServletResponse resp){
-
+        if (ServletFileUpload.isMultipartContent(req)) {
+            ServletFileUpload upload = new ServletFileUpload();//创建文件上传对象
+            upload.setFileSizeMax(10 * 1024 *1024);
+            WxbGood wxbGood = new WxbGood();
+            try {
+                FileItemIterator itr = upload.getItemIterator(req);//获取表单迭代器
+                while (itr.hasNext()) {
+                    FileItemStream item = itr.next();
+                    if (item.isFormField()) {//判断是否是一般表单项
+                        String value = Streams.asString(item.openStream(),"UTF-8");//读取表单的值
+                        switch(item.getFieldName()){
+                            case "good_name" :
+                                wxbGood.setGoodName(value);
+                                break;
+                            case "type_id" :
+                                wxbGood.setTypeId(value);
+                                break;
+                            case "order_no" :
+                                wxbGood.setOrderNo(Integer.parseInt(value));
+                                break;
+                            case "sell_num" :
+                                wxbGood.setSellNum(Integer.parseInt(value));
+                                break;
+                            case "promote_desc" :
+                                wxbGood.setPromoteDesc(value);
+                                break;
+                            case "tags" :
+                                wxbGood.setTags(value);
+                                break;
+                            case "copy_desc" :
+                                wxbGood.setCopyDesc(value);
+                                break;
+                            case "forward_link" :
+                                wxbGood.setForwardLink(value);
+                                break;
+                            case "spc_id" :
+                                wxbGood.setSpcId(value);
+                                break;
+                            case "zcopy_id" :
+                                wxbGood.setZonId(value);
+                                break;
+                        }
+                    }else{
+                        //获得文件名、进行处理
+                        String filename = item.getName();
+//                        System.out.println("--------------------------------------"+filename);
+                        if (filename != null && filename.length() > 0) {
+                            String filename2 = UUID.randomUUID().toString()+ (filename.substring(filename.lastIndexOf(".")));
+                            //保存新的文件名、用于写入数据库
+                            wxbGood.setGoodPic(filename2);
+                            filename = SystemConstatsUtils.UPLOAD_PATH + filename2;
+                            //创建文件输出流
+                            FileOutputStream out = new FileOutputStream(filename);
+                            //读取上传文件流、写入文件
+                            Streams.copy(item.openStream(), out, true);
+                        }
+                    }
+                }
+                String goodId = UUID.randomUUID().toString().replaceAll("-","").substring(0,8);
+                Date date = new Date();
+                Timestamp timestamp = new Timestamp(date.getTime());
+                wxbGood.setGoodId(goodId);
+                wxbGood.setCustomerId("商户ID");
+//                wxbGood.setGoodPic("E:\\java_advanced\\workspace\\MerchantSystem");
+                wxbGood.setGoodPic1("E:\\java_advanced\\workspace\\MerchantSystem");
+                wxbGood.setGoodPic2("E:\\java_advanced\\workspace\\MerchantSystem");
+//                wxbGood.setPromoteDesc("推广说明");
+                wxbGood.setSkuTitle("sku描述");
+                wxbGood.setSkuCost("成本");
+                wxbGood.setSkuPrice("价格");
+                wxbGood.setSkuPmoney("分成");
+                wxbGood.setCopyIds("文案ID");
+                wxbGood.setCopyDesc("文案说明");
+//                wxbGood.setForwardLink("跳转链接");
+//                wxbGood.setOrderNo(001);
+//                wxbGood.setTypeId("商品分类");
+//                wxbGood.setTags("标签信息");
+                wxbGood.setState(012);
+                wxbGood.setCreateTime(timestamp);
+                wxbGood.setToped(01);
+                wxbGood.setRecomed(10);
+                wxbGood.setTopedTime(timestamp);
+                wxbGood.setRecomedTime(timestamp);
+//                wxbGood.setSpcId("站内文案ID");
+//                wxbGood.setZonId("空间文案ID");
+                wxbGood.setSellNum(0);
+                wxbGood.setWebsite("产品网址");
+                wxbGood.setIswxpay(0);
+                wxbGood.setIsfdfk(0);
+                wxbGood.setLeixingId(0);
+                wxbGood.setKfqq("0");
+                goodsService.insertGoodsAndGoodsSku(wxbGood);
+            } catch (FileUploadException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
