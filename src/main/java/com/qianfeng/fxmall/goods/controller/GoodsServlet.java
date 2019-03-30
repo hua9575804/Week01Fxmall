@@ -159,8 +159,8 @@ public class GoodsServlet extends BaseServlet {
             s2 = "" + str2.append(random.nextInt(10));
             s3 = "" + str3.append(random.nextInt(10));
         }
-        String row = req.getParameter("k");
-        System.out.println("----------行----------"+ row);
+//        String row = req.getParameter("k");
+//        System.out.println("----------行----------"+ row);
         WxbGoodSku wxbGoodSku1 = new WxbGoodSku(s1,sku1,cb1,jg1,fc1,wxbGood.getGoodId(),order_no,service_money);
 //        goodsSkuService.insertGoodsSku(wxbGoodSku1);
         req.getRequestDispatcher("goods.do?m=queryGoodsByPage").forward(req,resp);
