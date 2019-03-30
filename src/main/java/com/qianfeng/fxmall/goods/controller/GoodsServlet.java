@@ -164,6 +164,6 @@ public class GoodsServlet extends BaseServlet {
      *特殊表单添加
      */
     public void insertGoodsAndGoodSku2(HttpServletRequest req,HttpServletResponse resp){
-
+        //
     }
 }
