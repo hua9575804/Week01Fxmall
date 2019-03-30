@@ -2,6 +2,7 @@ package com.qianfeng.fxmall.goods.bean;
 
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class WxbGood implements Serializable {
 
@@ -316,4 +317,40 @@ public class WxbGood implements Serializable {
     this.kfqq = kfqq;
   }
 
+  public WxbGood(String goodId, String goodName, String customerId, String goodPic, String goodPic1, String goodPic2, String promoteDesc, String skuTitle, String skuCost, String skuPrice, String skuPmoney, String copyIds, String copyDesc, String forwardLink, long orderNo, String typeId, String tags, long state, Timestamp createTime, long toped, long recomed, Timestamp topedTime, Timestamp recomedTime, String spcId, String zonId, long sellNum, String website, long iswxpay, long isfdfk, long leixingId, String kfqq) {
+    this.goodId = goodId;
+    this.goodName = goodName;
+    this.customerId = customerId;
+    this.goodPic = goodPic;
+    this.goodPic1 = goodPic1;
+    this.goodPic2 = goodPic2;
+    this.promoteDesc = promoteDesc;
+    this.skuTitle = skuTitle;
+    this.skuCost = skuCost;
+    this.skuPrice = skuPrice;
+    this.skuPmoney = skuPmoney;
+    this.copyIds = copyIds;
+    this.copyDesc = copyDesc;
+    this.forwardLink = forwardLink;
+    this.orderNo = orderNo;
+    this.typeId = typeId;
+    this.tags = tags;
+    this.state = state;
+    this.createTime = createTime;
+    this.toped = toped;
+    this.recomed = recomed;
+    this.topedTime = topedTime;
+    this.recomedTime = recomedTime;
+    this.spcId = spcId;
+    this.zonId = zonId;
+    this.sellNum = sellNum;
+    this.website = website;
+    this.iswxpay = iswxpay;
+    this.isfdfk = isfdfk;
+    this.leixingId = leixingId;
+    this.kfqq = kfqq;
+  }
+
+  public WxbGood() {
+  }
 }
